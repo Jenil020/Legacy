@@ -28,19 +28,32 @@ export default function ExpenseList() {
     },
   ];
 
-  const columns: ColumnConfig<Expense>[] = [
-    { dataField: 'voucherNo', caption: 'Voucher No', width: 150 },
-    { dataField: 'date', caption: 'Date', dataType: 'date', format: 'yyyy-MM-dd',width:150 },
-    { dataField: 'expenseAccount', caption: 'Expense Account', width: 200 },
-    { dataField: 'paidTo', caption: 'Paid To', width: 150 },
-    { dataField: 'amount', caption: 'Amount', dataType: 'number', format: 'currency', width: 120 },
-    { dataField: 'remarks', caption: 'Remarks', width: 200 },
+  // Convert columns to columnBuilder function
+  const columnBuilder = (isFullscreen: boolean): ColumnConfig<Expense>[] => [
+    { dataField: 'voucherNo', caption: 'Voucher No', width: isFullscreen ? undefined : 150 },
+    { 
+      dataField: 'date', 
+      caption: 'Date', 
+      dataType: 'date', 
+      format: 'yyyy-MM-dd',
+      width: isFullscreen ? undefined : 150 
+    },
+    { dataField: 'expenseAccount', caption: 'Expense Account', width: isFullscreen ? undefined : 200 },
+    { dataField: 'paidTo', caption: 'Paid To', width: isFullscreen ? undefined : 150 },
+    { 
+      dataField: 'amount', 
+      caption: 'Amount', 
+      dataType: 'number', 
+      format: 'currency', 
+      width: isFullscreen ? undefined : 120 
+    },
+    { dataField: 'remarks', caption: 'Remarks', width: isFullscreen ? undefined : 200 },
   ];
 
   return (
     <UniformDataGrid<Expense>
       data={expenses}
-      columns={columns}
+      columnBuilder={columnBuilder}  // Changed from columns to columnBuilder
       addButtonText="+ New Expense"
       onAdd={() => router.push('/expense/create-expense')}
       onEdit={(expense) => router.push(`/expense/${expense.id}`)}
