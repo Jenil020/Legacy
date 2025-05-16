@@ -28,19 +28,48 @@ export default function ContraList() {
     },
   ];
 
-  const columns: ColumnConfig<Contra>[] = [
-    { dataField: 'voucherNo', caption: 'Voucher No', width: 120 },
-    { dataField: 'date', caption: 'Date', dataType: 'date', format: 'yyyy-MM-dd',width:120 },
-    { dataField: 'fromAccount', caption: 'From Account', width: 200 },
-    { dataField: 'toAccount', caption: 'To Account', width: 200 },
-    { dataField: 'amount', caption: 'Amount', dataType: 'number', format: 'currency', width: 120 },
-    { dataField: 'remarks', caption: 'Remarks', width: 200 },
+  // Convert columns to columnBuilder function
+  const columnBuilder = (isFullscreen: boolean): ColumnConfig<Contra>[] => [
+    { 
+      dataField: 'voucherNo', 
+      caption: 'Voucher No', 
+      width: isFullscreen ? undefined : 120 
+    },
+    { 
+      dataField: 'date', 
+      caption: 'Date', 
+      dataType: 'date', 
+      format: 'yyyy-MM-dd',
+      width: isFullscreen ? undefined : 120 
+    },
+    { 
+      dataField: 'fromAccount', 
+      caption: 'From Account', 
+      width: isFullscreen ? undefined : 200 
+    },
+    { 
+      dataField: 'toAccount', 
+      caption: 'To Account', 
+      width: isFullscreen ? undefined : 200 
+    },
+    { 
+      dataField: 'amount', 
+      caption: 'Amount', 
+      dataType: 'number', 
+      format: 'currency', 
+      width: isFullscreen ? undefined : 120 
+    },
+    { 
+      dataField: 'remarks', 
+      caption: 'Remarks', 
+      width: isFullscreen ? undefined : 200 
+    },
   ];
 
   return (
     <UniformDataGrid<Contra>
       data={contras}
-      columns={columns}
+      columnBuilder={columnBuilder}  // Changed from columns to columnBuilder
       addButtonText="+ New Contra"
       onAdd={() => router.push('/transaction/contra')}
       onEdit={(contra) => router.push(`/transaction/contra/${contra.id}`)}

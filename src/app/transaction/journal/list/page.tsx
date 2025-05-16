@@ -28,19 +28,48 @@ export default function JournalList() {
     },
   ];
 
-  const columns: ColumnConfig<Journal>[] = [
-    { dataField: 'voucherNo', caption: 'Voucher No', width: 150 },
-    { dataField: 'date', caption: 'Date', dataType: 'date', format: 'yyyy-MM-dd' , width:150},
-    { dataField: 'fromAccount', caption: 'From (Dr)', width: 170 },
-    { dataField: 'toAccount', caption: 'To (Cr)', width: 170 },
-    { dataField: 'amount', caption: 'Amount', dataType: 'number', format: 'currency', width: 160 },
-    { dataField: 'remarks', caption: 'Remarks', width: 210 },
+  // Convert columns to columnBuilder function
+  const columnBuilder = (isFullscreen: boolean): ColumnConfig<Journal>[] => [
+    { 
+      dataField: 'voucherNo', 
+      caption: 'Voucher No', 
+      width: isFullscreen ? undefined : 150 
+    },
+    { 
+      dataField: 'date', 
+      caption: 'Date', 
+      dataType: 'date', 
+      format: 'yyyy-MM-dd',
+      width: isFullscreen ? undefined : 150 
+    },
+    { 
+      dataField: 'fromAccount', 
+      caption: 'From (Dr)', 
+      width: isFullscreen ? undefined : 170 
+    },
+    { 
+      dataField: 'toAccount', 
+      caption: 'To (Cr)', 
+      width: isFullscreen ? undefined : 170 
+    },
+    { 
+      dataField: 'amount', 
+      caption: 'Amount', 
+      dataType: 'number', 
+      format: 'currency', 
+      width: isFullscreen ? undefined : 160 
+    },
+    { 
+      dataField: 'remarks', 
+      caption: 'Remarks', 
+      width: isFullscreen ? undefined : 210 
+    },
   ];
 
   return (
     <UniformDataGrid<Journal>
       data={journals}
-      columns={columns}
+      columnBuilder={columnBuilder}  // Changed from columns to columnBuilder
       addButtonText="+ New Journal"
       onAdd={() => router.push('/transaction/journal')}
       onEdit={(journal) => router.push(`/transaction/journal/${journal.id}`)}
