@@ -16,7 +16,7 @@ interface FirmData {
   financialYearTo: Date;
   itPanNo: string;
   gstinNo: string;
-  mobileNo: string;
+  mobileNo: number;
   isActive: boolean;
 }
 
@@ -30,7 +30,7 @@ const CreateFirmPage = () => {
     financialYearTo: new Date(),
     itPanNo: '',
     gstinNo: '',
-    mobileNo: '',
+    mobileNo: 0,
     isActive: true
   });
 
