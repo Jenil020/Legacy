@@ -1,0 +1,395 @@
+// components/transaction/payment/PaymentList.tsx
+'use client';
+
+import UniformDataGrid , { ColumnConfig } from '@/components/UniformDataGrid';
+import { useRouter } from 'next/navigation';
+
+interface Payment {
+  id: string;
+  voucherNo: string;
+  date: Date;
+  ledgerName: string;
+  receivedBy: string;
+  checkNo: string;
+  checkDate: Date;
+  amount: number;
+  remarks: string;
+}
+
+export default function PaymentList() {
+  const router = useRouter();
+  
+  const payments: Payment[] = [
+
+  {
+    id: '1',
+    voucherNo: 'PV-001',
+    date: new Date('2023-05-15'),
+    ledgerName: 'ABC Suppliers',
+    receivedBy: 'John Doe',
+    checkNo: 'CHQ123',
+    checkDate: new Date('2023-05-14'),
+    amount: 15000,
+    remarks: 'First payment',
+  },
+  {
+    id: '2',
+    voucherNo: 'PV-002',
+    date: new Date('2023-05-16'),
+    ledgerName: 'XYZ Traders',
+    receivedBy: 'Jane Smith',
+    checkNo: 'CHQ124',
+    checkDate: new Date('2023-05-15'),
+    amount: 20000,
+    remarks: 'Second installment',
+  },
+  {
+    id: '3',
+    voucherNo: 'PV-003',
+    date: new Date('2023-05-17'),
+    ledgerName: 'Global Parts Co.',
+    receivedBy: 'Alice Johnson',
+    checkNo: 'CHQ125',
+    checkDate: new Date('2023-05-16'),
+    amount: 17500,
+    remarks: 'Advance for shipment',
+  },
+  {
+    id: '4',
+    voucherNo: 'PV-004',
+    date: new Date('2023-05-18'),
+    ledgerName: 'SupplyMax Ltd.',
+    receivedBy: 'Bob Lee',
+    checkNo: 'CHQ126',
+    checkDate: new Date('2023-05-17'),
+    amount: 22000,
+    remarks: 'Full payment',
+  },
+  {
+    id: '5',
+    voucherNo: 'PV-005',
+    date: new Date('2023-05-19'),
+    ledgerName: 'Oceanic Logistics',
+    receivedBy: 'Charlie Kim',
+    checkNo: 'CHQ127',
+    checkDate: new Date('2023-05-18'),
+    amount: 10500,
+    remarks: 'Logistics charges',
+  },
+  {
+    id: '6',
+    voucherNo: 'PV-006',
+    date: new Date('2023-05-20'),
+    ledgerName: 'Delta Wholesalers',
+    receivedBy: 'Dana White',
+    checkNo: 'CHQ128',
+    checkDate: new Date('2023-05-19'),
+    amount: 30000,
+    remarks: 'Bulk order payment',
+  },
+  {
+    id: '7',
+    voucherNo: 'PV-007',
+    date: new Date('2023-05-21'),
+    ledgerName: 'Prime Hardware',
+    receivedBy: 'Ethan Wright',
+    checkNo: 'CHQ129',
+    checkDate: new Date('2023-05-20'),
+    amount: 8500,
+    remarks: 'Tool purchase',
+  },
+  {
+    id: '8',
+    voucherNo: 'PV-008',
+    date: new Date('2023-05-22'),
+    ledgerName: 'FastFix Co.',
+    receivedBy: 'Fiona Chase',
+    checkNo: 'CHQ130',
+    checkDate: new Date('2023-05-21'),
+    amount: 9600,
+    remarks: 'Repair service fee',
+  },
+  {
+    id: '9',
+    voucherNo: 'PV-009',
+    date: new Date('2023-05-23'),
+    ledgerName: 'Ace Equipments',
+    receivedBy: 'George Fox',
+    checkNo: 'CHQ131',
+    checkDate: new Date('2023-05-22'),
+    amount: 17250,
+    remarks: 'Machine downpayment',
+  },
+  {
+    id: '10',
+    voucherNo: 'PV-010',
+    date: new Date('2023-05-24'),
+    ledgerName: 'Bright Supplies',
+    receivedBy: 'Hannah Grace',
+    checkNo: 'CHQ132',
+    checkDate: new Date('2023-05-23'),
+    amount: 14400,
+    remarks: 'General supplies',
+  },
+  {
+    id: '11',
+    voucherNo: 'PV-011',
+    date: new Date('2023-05-25'),
+    ledgerName: 'Safe Transport',
+    receivedBy: 'Ian Thorpe',
+    checkNo: 'CHQ133',
+    checkDate: new Date('2023-05-24'),
+    amount: 21000,
+    remarks: 'Transport charges',
+  },
+  {
+    id: '12',
+    voucherNo: 'PV-012',
+    date: new Date('2023-05-26'),
+    ledgerName: 'Smart Office Ltd.',
+    receivedBy: 'Jackie O',
+    checkNo: 'CHQ134',
+    checkDate: new Date('2023-05-25'),
+    amount: 11900,
+    remarks: 'Office setup',
+  },
+  {
+    id: '13',
+    voucherNo: 'PV-013',
+    date: new Date('2023-05-27'),
+    ledgerName: 'Mega Tools',
+    receivedBy: 'Kyle Novak',
+    checkNo: 'CHQ135',
+    checkDate: new Date('2023-05-26'),
+    amount: 13300,
+    remarks: 'Monthly tools bill',
+  },
+  {
+    id: '14',
+    voucherNo: 'PV-014',
+    date: new Date('2023-05-28'),
+    ledgerName: 'TechOne Pvt. Ltd.',
+    receivedBy: 'Laura Benson',
+    checkNo: 'CHQ136',
+    checkDate: new Date('2023-05-27'),
+    amount: 28400,
+    remarks: 'Hardware upgrade',
+  },
+  {
+    id: '15',
+    voucherNo: 'PV-015',
+    date: new Date('2023-05-29'),
+    ledgerName: 'BuildPro Corp.',
+    receivedBy: 'Matt Rivers',
+    checkNo: 'CHQ137',
+    checkDate: new Date('2023-05-28'),
+    amount: 39000,
+    remarks: 'Project payment',
+  },
+  {
+    id: '16',
+    voucherNo: 'PV-016',
+    date: new Date('2023-05-30'),
+    ledgerName: 'United Traders',
+    receivedBy: 'Nina Cook',
+    checkNo: 'CHQ138',
+    checkDate: new Date('2023-05-29'),
+    amount: 10200,
+    remarks: 'Material purchase',
+  },
+  {
+    id: '17',
+    voucherNo: 'PV-017',
+    date: new Date('2023-05-31'),
+    ledgerName: 'Easy Freight',
+    receivedBy: 'Oscar Knight',
+    checkNo: 'CHQ139',
+    checkDate: new Date('2023-05-30'),
+    amount: 26500,
+    remarks: 'Freight charges',
+  },
+  {
+    id: '18',
+    voucherNo: 'PV-018',
+    date: new Date('2023-06-01'),
+    ledgerName: 'Crystal Packaging',
+    receivedBy: 'Paula Ryan',
+    checkNo: 'CHQ140',
+    checkDate: new Date('2023-05-31'),
+    amount: 8700,
+    remarks: 'Packaging services',
+  },
+  {
+    id: '19',
+    voucherNo: 'PV-019',
+    date: new Date('2023-06-02'),
+    ledgerName: 'Urban Printworks',
+    receivedBy: 'Quinn Harris',
+    checkNo: 'CHQ141',
+    checkDate: new Date('2023-06-01'),
+    amount: 11800,
+    remarks: 'Printing charges',
+  },
+  {
+    id: '20',
+    voucherNo: 'PV-020',
+    date: new Date('2023-06-03'),
+    ledgerName: 'Zenith Imports',
+    receivedBy: 'Rachel West',
+    checkNo: 'CHQ142',
+    checkDate: new Date('2023-06-02'),
+    amount: 26400,
+    remarks: 'Imported goods payment',
+  },
+  {
+    id: '21',
+    voucherNo: 'PV-021',
+    date: new Date('2023-06-04'),
+    ledgerName: 'Eco Builders',
+    receivedBy: 'Steve Black',
+    checkNo: 'CHQ143',
+    checkDate: new Date('2023-06-03'),
+    amount: 19400,
+    remarks: 'Construction services',
+  },
+  {
+    id: '22',
+    voucherNo: 'PV-022',
+    date: new Date('2023-06-05'),
+    ledgerName: 'Fast Print Ltd.',
+    receivedBy: 'Tina Green',
+    checkNo: 'CHQ144',
+    checkDate: new Date('2023-06-04'),
+    amount: 13750,
+    remarks: 'Invoice #FP123',
+  },
+  {
+    id: '23',
+    voucherNo: 'PV-023',
+    date: new Date('2023-06-06'),
+    ledgerName: 'CleanTech',
+    receivedBy: 'Umar Patel',
+    checkNo: 'CHQ145',
+    checkDate: new Date('2023-06-05'),
+    amount: 16000,
+    remarks: 'Cleaning contract',
+  },
+  {
+    id: '24',
+    voucherNo: 'PV-024',
+    date: new Date('2023-06-07'),
+    ledgerName: 'Rapid Electronics',
+    receivedBy: 'Vera Stone',
+    checkNo: 'CHQ146',
+    checkDate: new Date('2023-06-06'),
+    amount: 24500,
+    remarks: 'Electronic parts supply',
+  },
+  {
+    id: '25',
+    voucherNo: 'PV-025',
+    date: new Date('2023-06-08'),
+    ledgerName: 'NextGen Software',
+    receivedBy: 'Will Brooks',
+    checkNo: 'CHQ147',
+    checkDate: new Date('2023-06-07'),
+    amount: 32000,
+    remarks: 'Software license',
+  },
+  {
+    id: '26',
+    voucherNo: 'PV-026',
+    date: new Date('2023-06-09'),
+    ledgerName: 'Golden Steel',
+    receivedBy: 'Xena Dsouza',
+    checkNo: 'CHQ148',
+    checkDate: new Date('2023-06-08'),
+    amount: 41000,
+    remarks: 'Steel delivery',
+  },
+  {
+    id: '27',
+    voucherNo: 'PV-027',
+    date: new Date('2023-06-10'),
+    ledgerName: 'Breeze Logistics',
+    receivedBy: 'Yasir Khan',
+    checkNo: 'CHQ149',
+    checkDate: new Date('2023-06-09'),
+    amount: 18700,
+    remarks: 'Courier services',
+  },
+  {
+    id: '28',
+    voucherNo: 'PV-028',
+    date: new Date('2023-06-11'),
+    ledgerName: 'Green Supplies',
+    receivedBy: 'Zara Lane',
+    checkNo: 'CHQ150',
+    checkDate: new Date('2023-06-10'),
+    amount: 9800,
+    remarks: 'Eco products',
+  },
+  {
+    id: '29',
+    voucherNo: 'PV-029',
+    date: new Date('2023-06-12'),
+    ledgerName: 'Allied Engineering',
+    receivedBy: 'Andy Park',
+    checkNo: 'CHQ151',
+    checkDate: new Date('2023-06-11'),
+    amount: 36800,
+    remarks: 'Engineering contract',
+  },
+  {
+    id: '30',
+    voucherNo: 'PV-030',
+    date: new Date('2023-06-13'),
+    ledgerName: 'Bluechip Traders',
+    receivedBy: 'Betty Hughes',
+    checkNo: 'CHQ152',
+    checkDate: new Date('2023-06-12'),
+    amount: 23400,
+    remarks: 'Inventory replenishment',
+  },
+  {
+    id: '31',
+    voucherNo: 'PV-031',
+    date: new Date('2023-06-14'),
+    ledgerName: 'Orbit Services',
+    receivedBy: 'Carl Evans',
+    checkNo: 'CHQ153',
+    checkDate: new Date('2023-06-13'),
+    amount: 12000,
+    remarks: 'Consulting fees',
+  },
+];
+
+
+  const buildColumns = (isFullscreen: boolean): ColumnConfig<Payment>[] => [
+  { dataField: 'voucherNo', caption: 'Voucher No', width: isFullscreen ? undefined : undefined },
+  { dataField: 'date', caption: 'Date', dataType: 'date', format: 'yyyy-MM-dd', width: isFullscreen ? undefined : undefined },
+  { dataField: 'ledgerName', caption: 'Ledger Name', width: isFullscreen ? undefined : undefined },
+  { dataField: 'receivedBy', caption: 'Received By', width: isFullscreen ? undefined : undefined },
+  { dataField: 'checkNo', caption: 'Check No', width: isFullscreen ? undefined : undefined },
+  { dataField: 'checkDate', caption: 'Check Date', dataType: 'date', format: 'yyyy-MM-dd', width: isFullscreen ? undefined : undefined },
+  { dataField: 'amount', caption: 'Amount', dataType: 'number', format: 'currency', width: isFullscreen ? undefined : 90 },
+];
+
+
+  return (
+    <UniformDataGrid<Payment>
+      data={payments}
+       columnBuilder={buildColumns}
+
+      addButtonText="+ New Payment"
+      onAdd={() => router.push('/transaction/payment')}
+      onEdit={(payment: { id: any; }) => router.push(`/transaction/payment/${payment.id}`)}
+      onDelete={(payment: { id: any; }) => {
+        // Add your delete logic here
+        console.log('Deleting payment:', payment.id);
+      }}
+      deleteTitle="Delete Payment Voucher?"
+      deleteDescription={(payment: { voucherNo: any; ledgerName: any; }) => `This will permanently delete payment voucher ${payment.voucherNo} for ${payment.ledgerName}.`}
+    />
+  );
+}
