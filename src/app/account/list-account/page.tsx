@@ -1,11 +1,8 @@
-// account-list/page.tsx
 'use client';
 
-import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import EditItemDrawer from '@/components/edit/EditItem';
-import  UniformDataGrid  from '@/components/UniformDataGrid';
-
+import UniformDataGrid, { ColumnConfig } from '@/components/UniformDataGrid';
 
 interface FormData {
   name: string;
@@ -27,26 +24,31 @@ export default function List() {
   ]);
   const [editingItem, setEditingItem] = useState<FormData | null>(null);
 
-  const columns: { dataField: keyof FormData; caption: string; format?: string; width?: number }[] = [
-    { dataField: 'name', caption: 'Name' },
-    { dataField: 'groupName', caption: 'Group Name' },
-    { dataField: 'openingBalance', caption: 'Opening Balance', format: 'currency' },
-    { dataField: 'state', caption: 'State' },
-    { dataField: 'bankName', caption: 'Bank Name' },
+  // Properly typed columnBuilder function
+  const columnBuilder = (isFullscreen: boolean): ColumnConfig<FormData>[] => [
+    { dataField: 'name', caption: 'Name', width: isFullscreen ? undefined : 150 },
+    { dataField: 'groupName', caption: 'Group Name', width: isFullscreen ? undefined : 120 },
+    { dataField: 'openingBalance', caption: 'Opening Balance', format: 'currency', width: isFullscreen ? undefined : 150 },
+    { dataField: 'state', caption: 'State', width: isFullscreen ? undefined : 120 },
+    { dataField: 'bankName', caption: 'Bank Name', width: isFullscreen ? undefined : 150 },
   ];
 
   const handleDelete = (item: FormData) => {
     setUsers(users.filter(user => user.name !== item.name));
   };
 
+  const handleEdit = (item: FormData) => {
+    setEditingItem(item);
+  };
+
   return (
     <>
-      <UniformDataGrid
+      <UniformDataGrid<FormData>
         data={users}
-        columns={columns}
+        columnBuilder={columnBuilder}
         addButtonText="+ Add Account"
         onAdd={() => console.log('Add new account')}
-        onEdit={(item) => setEditingItem(item)}
+        onEdit={handleEdit}
         onDelete={handleDelete}
         deleteTitle="Are you absolutely sure?"
         deleteDescription={(item) => `This will permanently delete the account for ${item.name}.`}
